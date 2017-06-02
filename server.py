@@ -146,4 +146,4 @@ def logisitic_regression():
     return jsonify(data), 201
 
 
-app.run(host="0.0.0.0:8000")
+app.run(host="0.0.0.0", port="8000")
