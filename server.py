@@ -13,7 +13,7 @@ from sklearn import linear_model
 import json
 import math
 import pprint
-from pylab import scatter, show, legend, xlabel, ylabel
+# from pylab import scatter, show, legend, xlabel, ylabel
 
 
 
