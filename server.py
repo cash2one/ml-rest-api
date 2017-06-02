@@ -132,18 +132,14 @@ def logisitic_regression():
     cd = challenger_deaths
     x = np.matrix([cge, cgs, ct])
     y = np.array(wins)
-    print y
     x = x.transpose()
     clf = linear_model.LogisticRegression(C=1e5)
     clf.fit(x, y)
-    t = np.matrix([[1,1, 1 ], [1, 1, 1], [1, 2, 2]])
-    t = t.transpose()
-    print clf.predict(t)
-    print clf.score(t, y)
+    clf.predict(x)
+    v = clf.score(x, y)
     data = {
-
+        "data": v
     }
     return jsonify(data), 201
 
-
-app.run(host="0.0.0.0", port="8000")
+app.run(host="0.0.0.0:8000", port="8000")
