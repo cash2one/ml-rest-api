@@ -3,7 +3,6 @@ from flask import Flask, jsonify, request, abort
 
 """DEPENDENCIES"""
 import pandas as pd
-import pylab as pl
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import norm
@@ -13,7 +12,6 @@ from sklearn import linear_model
 import json
 import math
 import pprint
-# from pylab import scatter, show, legend, xlabel, ylabel
 
 
 
