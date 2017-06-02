@@ -4,7 +4,6 @@ from flask import Flask, jsonify, request, abort
 """DEPENDENCIES"""
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 from scipy.stats import norm
 from scipy.stats import linregress
 import scipy.integrate as integrate
