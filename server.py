@@ -112,8 +112,8 @@ def get_probability():
 def linear_regression():
     if not request.json:
         abort(400)
-    x = challenger_gold_earned
-    y = challenger_gold_spent
+    x = request.json["kills"]
+    y = request.json["deaths"]
     slope, intercept, r_value, p_value, std_err = linregress(x, y)
     data = {
         "slope": slope,
