@@ -114,13 +114,21 @@ def linear_regression():
         abort(400)
     x = request.json["kills"]
     y = request.json["deaths"]
+    min_x = min(x)
+    min_y = min(y)
+    max_x = max(x)
+    max_y = max(y)
     slope, intercept, r_value, p_value, std_err = linregress(x, y)
     data = {
         "slope": slope,
         "intercept": intercept,
         "r_value": r_value,
         "p_value": p_value,
-        "std": std_err
+        "std": std_err,
+        "max_x": max_x,
+        "max_y": max_y,
+        "min_x": min_x,
+        "min_y": min_y
     }
     return jsonify(data), 201
 
