@@ -11,6 +11,8 @@ from sklearn import linear_model
 import json
 import math
 import pprint
+import matplotlib
+matplotlib.use('Agg')
 from matplotlib import pyplot as plt
 
 
