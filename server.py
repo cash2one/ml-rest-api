@@ -125,6 +125,7 @@ def linear_regression():
 def logisitic_regression():
     if not request.json:
         abort(400)
+
     cge = challenger_gold_earned
     cgs = challenger_gold_spent
     ct = challenger_time
@@ -135,6 +136,7 @@ def logisitic_regression():
     x = x.transpose()
     clf = linear_model.LogisticRegression(C=1e5)
     clf.fit(x, y)
+    clf.transform(x)
     clf.predict(x)
     v = clf.score(x, y)
     data = {
@@ -142,4 +144,4 @@ def logisitic_regression():
     }
     return jsonify(data), 201
 
-app.run(host="0.0.0.0", port="8000")
+app.run(host="0.0.0.0 ", port="8000")
