@@ -120,18 +120,18 @@ def linear_regression():
     # min_y = min(y)
     # max_x = max(x)
     # max_y = max(y)
-    slope, intercept, r_value, p_value, std_err = linregress(x, y)
-    data = {
-        "slope": slope,
-        "intercept": intercept,
-        "r_value": r_value,
-        "p_value": p_value,
-        "std": std_err,
-        # "max_x": max_x,
-        # "max_y": max_y,
-        # "min_x": min_x,
-        # "min_y": min_y
-    }
+    # slope, intercept, r_value, p_value, std_err = linregress(x, y)
+    # data = {
+    #     "slope": slope,
+    #     "intercept": intercept,
+    #     "r_value": r_value,
+    #     "p_value": p_value,
+    #     "std": std_err,
+    #     # "max_x": max_x,
+    #     # "max_y": max_y,
+    #     # "min_x": min_x,
+    #     # "min_y": min_y
+    # }
     return jsonify(data), 201
 
 @app.route('/ml/api/v1.0/data/logistic-regression', methods=["POST"])
