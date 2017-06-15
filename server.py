@@ -115,7 +115,7 @@ def linear_regression():
     x = request.json["kills"]
     y = request.json["deaths"]
     print x
-    print y
+    print "y: {0}".format(y)
     # min_x = min(x)
     # min_y = min(y)
     # max_x = max(x)
