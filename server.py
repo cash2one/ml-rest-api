@@ -30,12 +30,6 @@ tasks = [
     }
 ]
 
-with open("challenger.json") as openfile:
-    data = json.load(openfile)
-challenger_players_data = data
-challenger_players_stats = []
-num_master_players = 42
-
 def clean_and_extract_stats(data):
     x = []
     for i in range(42):
@@ -44,17 +38,30 @@ def clean_and_extract_stats(data):
                 x.append(data[i][j]["stats"])
     return x
 
-
-challenger_players_stats = clean_and_extract_stats(challenger_players_data)
-
-least_games = len(challenger_players_stats)
-
 def record_wins(d):
     if d == False:
         return 0
     else:
         return 1
 
+
+with open("challenger.json") as openfile:
+    data = json.load(openfile)
+challenger_players_data = data
+challenger_players_stats = []
+num_master_players = 42
+
+with open("bronze.json") as openfile:
+    data = json.load(openfile)
+bronze_players_data = data
+bronze_players_stats = []
+num_master_players = 42
+
+
+challenger_players_stats = clean_and_extract_stats(challenger_players_data)
+bronze_players_stats = clean_and_extract_stats(bronze_players_data)
+
+least_games = len(challenger_players_stats)
 
 challenger_gold_earned = [challenger_players_stats[i]["goldEarned"]for i in range(least_games) if "goldEarned" in challenger_players_stats[i]]
 challenger_gold_spent = [challenger_players_stats[i]["goldSpent"]for i in range(least_games) if "goldSpent" in challenger_players_stats[i]]
@@ -65,6 +72,19 @@ challenger_minions = [challenger_players_stats[i]["neutralMinionsKilled"] for i 
 challenger_wins = [record_wins(challenger_players_stats[i]["win"]) for i in range(least_games)]
 challenger_kills = [challenger_players_stats[i]["championsKilled"] for i in range(least_games) if "championsKilled" in challenger_players_stats[i]]
 challenger_deaths = [challenger_players_stats[i]["numDeaths"] for i in range(least_games) if "numDeaths" in challenger_players_stats[i]]
+
+bronze_gold_earned = [bronze_players_stats[i]["goldEarned"]for i in range(least_games) if "goldEarned" in bronze_players_stats[i]]
+bronze_gold_spent = [bronze_players_stats[i]["goldSpent"]for i in range(least_games) if "goldSpent" in bronze_players_stats[i]]
+bronze_time = [bronze_players_stats[i]["timePlayed"]for i in range(least_games)]
+bronze_dmg_taken = [bronze_players_stats[i]["totalDamageTaken"]for i in range(least_games)]
+bronze_neutral_minions = [bronze_players_stats[i]["minionsKilled"] for i in range(least_games) if "minionsKilled" in bronze_players_stats[i]]
+bronze_minions = [bronze_players_stats[i]["neutralMinionsKilled"] for i in range(least_games) if "neutralMinionsKilled" in bronze_players_stats[i]]
+bronze_wins = [record_wins(bronze_players_stats[i]["win"]) for i in range(least_games)]
+bronze_kills = [bronze_players_stats[i]["championsKilled"] for i in range(least_games) if "championsKilled" in bronze_players_stats[i]]
+bronxe_deaths = [bronze_players_stats[i]["numDeaths"] for i in range(least_games) if "numDeaths" in bronze_players_stats[i]]
+
+
+
 
 def normpdf(x, mean, sd):
     var = float(sd)**2
@@ -86,7 +106,7 @@ def getProbability(x, y, dx, mu, std, data):
 def get_probability():
     if not request.json:
         abort(400)
-    d = challenger_gold_earned
+    d = challenger_gold_earned + bronze_gold_earned
 
     mu, std = norm.fit(d)
 
