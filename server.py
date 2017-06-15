@@ -107,7 +107,7 @@ def getProbability(x, y, dx, mu, std, data):
 def get_probability():
     if not request.json:
         abort(400)
-    d = challenger_gold_earned + bronze_gold_earned
+    d = challenger_gold_earned
 
     mu, std = norm.fit(d)
 
