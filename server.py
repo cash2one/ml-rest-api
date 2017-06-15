@@ -130,6 +130,7 @@ def linear_regression():
         "min_x": min_x,
         "min_y": min_y
     }
+
     return jsonify(data), 201
 
 @app.route('/ml/api/v1.0/data/logistic-regression', methods=["POST"])
