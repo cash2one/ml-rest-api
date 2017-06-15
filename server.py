@@ -64,15 +64,15 @@ bronze_players_stats = clean_and_extract_stats(bronze_players_data)
 least_games = len(challenger_players_stats)
 bronze_least_games = len(bronze_players_stats)
 
-challenger_gold_earned = [challenger_players_stats[i]["goldEarned"]for i in range(least_games) if "goldEarned" in challenger_players_stats[i]]
-challenger_gold_spent = [challenger_players_stats[i]["goldSpent"]for i in range(least_games) if "goldSpent" in challenger_players_stats[i]]
-challenger_time = [challenger_players_stats[i]["timePlayed"]for i in range(least_games)]
-challenger_dmg_taken = [challenger_players_stats[i]["totalDamageTaken"]for i in range(least_games)]
-challenger_neutral_minions = [challenger_players_stats[i]["minionsKilled"] for i in range(least_games) if "minionsKilled" in challenger_players_stats[i]]
-challenger_minions = [challenger_players_stats[i]["neutralMinionsKilled"] for i in range(least_games) if "neutralMinionsKilled" in challenger_players_stats[i]]
-challenger_wins = [record_wins(challenger_players_stats[i]["win"]) for i in range(least_games)]
-challenger_kills = [challenger_players_stats[i]["championsKilled"] for i in range(least_games) if "championsKilled" in challenger_players_stats[i]]
-challenger_deaths = [challenger_players_stats[i]["numDeaths"] for i in range(least_games) if "numDeaths" in challenger_players_stats[i]]
+challenger_gold_earned = [challenger_players_stats[i]["goldEarned"]for i in range(bronze_least_games) if "goldEarned" in challenger_players_stats[i]]
+challenger_gold_spent = [challenger_players_stats[i]["goldSpent"]for i in range(bronze_least_games) if "goldSpent" in challenger_players_stats[i]]
+challenger_time = [challenger_players_stats[i]["timePlayed"]for i in range(bronze_least_games)]
+challenger_dmg_taken = [challenger_players_stats[i]["totalDamageTaken"]for i in range(bronze_least_games)]
+challenger_neutral_minions = [challenger_players_stats[i]["minionsKilled"] for i in range(bronze_least_games) if "minionsKilled" in challenger_players_stats[i]]
+challenger_minions = [challenger_players_stats[i]["neutralMinionsKilled"] for i in range(bronze_least_games) if "neutralMinionsKilled" in challenger_players_stats[i]]
+challenger_wins = [record_wins(challenger_players_stats[i]["win"]) for i in range(bronze_least_games)]
+challenger_kills = [challenger_players_stats[i]["championsKilled"] for i in range(bronze_least_games) if "championsKilled" in challenger_players_stats[i]]
+challenger_deaths = [challenger_players_stats[i]["numDeaths"] for i in range(bronze_least_games) if "numDeaths" in challenger_players_stats[i]]
 
 bronze_gold_earned = [bronze_players_stats[i]["goldEarned"]for i in range(bronze_least_games) if "goldEarned" in bronze_players_stats[i]]
 bronze_gold_spent = [bronze_players_stats[i]["goldSpent"]for i in range(bronze_least_games) if "goldSpent" in bronze_players_stats[i]]
