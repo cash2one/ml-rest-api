@@ -59,13 +59,13 @@ num_master_players = 42
 
 with open("master.json") as openfile:
     data = json.load(openfile)
-bronze_players_data = data
-bronze_players_stats = []
+master_players_data = data
+master_players_stats = []
 num_master_players = 42
 
 
 challenger_players_stats = clean_and_extract_stats(challenger_players_data)
-master_players_stats = clean_and_extract_stats(master_players_stats)
+master_players_stats = clean_and_extract_stats(master_players_data)
 bronze_players_stats = clean_and_extract_stats(bronze_players_data)
 
 least_games = len(challenger_players_stats)
