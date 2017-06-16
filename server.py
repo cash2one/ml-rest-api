@@ -57,8 +57,15 @@ bronze_players_data = data
 bronze_players_stats = []
 num_master_players = 42
 
+with open("master.json") as openfile:
+    data = json.load(openfile)
+bronze_players_data = data
+bronze_players_stats = []
+num_master_players = 42
+
 
 challenger_players_stats = clean_and_extract_stats(challenger_players_data)
+master_players_stats = clean_and_extract_stats(master_players_stats)
 bronze_players_stats = clean_and_extract_stats(bronze_players_data)
 
 least_games = len(challenger_players_stats)
@@ -82,8 +89,17 @@ bronze_neutral_minions = [bronze_players_stats[i]["minionsKilled"] for i in rang
 bronze_minions = [bronze_players_stats[i]["neutralMinionsKilled"] for i in range(bronze_least_games) if "neutralMinionsKilled" in bronze_players_stats[i]]
 bronze_wins = [record_wins(bronze_players_stats[i]["win"]) for i in range(bronze_least_games)]
 bronze_kills = [bronze_players_stats[i]["championsKilled"] for i in range(bronze_least_games) if "championsKilled" in bronze_players_stats[i]]
-bronxe_deaths = [bronze_players_stats[i]["numDeaths"] for i in range(bronze_least_games) if "numDeaths" in bronze_players_stats[i]]
+bronze_deaths = [bronze_players_stats[i]["numDeaths"] for i in range(bronze_least_games) if "numDeaths" in bronze_players_stats[i]]
 
+master_gold_earned = [master_players_stats[i]["goldEarned"]for i in range(bronze_least_games) if "goldEarned" in master_players_stats[i]]
+master_gold_spent = [master_players_stats[i]["goldSpent"]for i in range(bronze_least_games) if "goldSpent" in master_players_stats[i]]
+master_time = [master_players_stats[i]["timePlayed"]for i in range(bronze_least_games)]
+master_dmg_taken = [master_players_stats[i]["totalDamageTaken"]for i in range(bronze_least_games)]
+master_neutral_minions = [master_players_stats[i]["minionsKilled"] for i in range(bronze_least_games) if "minionsKilled" in master_players_stats[i]]
+master_minions = [master_players_stats[i]["neutralMinionsKilled"] for i in range(bronze_least_games) if "neutralMinionsKilled" in master_players_stats[i]]
+master_wins = [record_wins(master_players_stats[i]["win"]) for i in range(bronze_least_games)]
+master_kills = [master_players_stats[i]["championsKilled"] for i in range(bronze_least_games) if "championsKilled" in master_players_stats[i]]
+master_deaths = [master_players_stats[i]["numDeaths"] for i in range(bronze_least_games) if "numDeaths" in master_players_stats[i]]
 
 
 
@@ -145,7 +161,25 @@ def get_probability():
         "std": std
     }
 
-    return jsonify([prob, prob2]), 201
+    d = master_gold_earned
+
+    mu, std = norm.fit(d)
+
+    plt.hist(d, bins=25, normed=True, alpha=0.6)
+    xmin, xmax = plt.xlim()
+    x = np.linspace(xmin, xmax, 100)
+    p = norm.pdf(x, mu, std)
+
+    prob3 = {
+
+        "pdf": total,
+        "norm": p.tolist(),
+        "x": x.tolist(),
+        "mean": mu,
+        "std": std
+    }
+
+    return jsonify([prob, prob2, prob3]), 201
 
 
 @app.route('/ml/api/v1.0/data/linear-regression', methods=["POST"])
