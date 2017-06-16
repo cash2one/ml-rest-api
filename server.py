@@ -240,7 +240,7 @@ def logisitic_regression():
     x = x.transpose()
     clf = linear_model.LogisticRegression(C=1e5)
     clf.fit(x, y)
-    player_data = request.json["x"]
+    player_data = np.matrix(request.json["x"])
     player_data = player_data.transpose()
 
     data = {
