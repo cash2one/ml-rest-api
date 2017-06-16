@@ -125,7 +125,6 @@ def get_probability():
         abort(400)
 
     d = challenger_gold_earned
-    b = bronze_gold_earned
 
     mu, std = norm.fit(d)
 
@@ -179,7 +178,25 @@ def get_probability():
         "std": std
     }
 
-    return jsonify([prob, prob2, prob3]), 201
+    d = challenger_kills
+
+    mu, std = norm.fit(d)
+
+    plt.hist(d, bins=25, normed=True, alpha=0.6)
+    xmin, xmax = plt.xlim()
+    x = np.linspace(xmin, xmax, 100)
+    p = norm.pdf(x, mu, std)
+
+    total = getProbability(request.json["start"], request.json["end"], 1, mu, std, d)
+    chall_kills = {
+        "pdf": total,
+        "norm": p.tolist(),
+        "x": x.tolist(),
+        "mean": mu,
+        "std": std
+    }
+
+    return jsonify([prob, prob2, prob3, chall_kills]), 201
 
 
 @app.route('/ml/api/v1.0/data/linear-regression', methods=["POST"])
