@@ -230,14 +230,14 @@ def logisitic_regression():
     if not request.json:
         abort(400)
 
-    # cge = challenger_gold_earned
-    # cgs = challenger_gold_spent
+    cge = challenger_gold_earned
+    cgs = challenger_gold_spent
     cgt = challenger_time
     ck = challenger_kills
     cm = challenger_minions
     wins = challenger_wins
     cd = challenger_deaths
-    x = np.matrix([ck, cm, cgt])
+    x = np.matrix([cge, cgs, cgt])
     y = np.array(wins)
     x = x.transpose()
     clf = linear_model.LogisticRegression(C=1e5)
