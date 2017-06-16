@@ -232,19 +232,18 @@ def logisitic_regression():
 
     cge = challenger_gold_earned
     cgs = challenger_gold_spent
-    ct = challenger_time
+
     wins = challenger_wins
     cd = challenger_deaths
-    x = np.matrix([cge, cgs, ct])
+    x = np.matrix([cge, cgs])
     y = np.array(wins)
     x = x.transpose()
     clf = linear_model.LogisticRegression(C=1e5)
     clf.fit(x, y)
-    clf.transform(x)
-    clf.predict(x)
-    v = clf.score(x, y)
+    player_data = request.json["x"]
+
     data = {
-        "data": v
+        "data": clf.predict(player_data)
     }
     return jsonify(data), 201
 
