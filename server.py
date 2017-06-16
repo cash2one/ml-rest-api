@@ -193,7 +193,7 @@ def get_probability():
         "norm": p.tolist(),
         "x": x.tolist(),
         "mean": mu,
-        "std": std
+        "std": std,
         "d": d
     }
 
