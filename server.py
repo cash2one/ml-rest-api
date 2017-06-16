@@ -194,6 +194,7 @@ def get_probability():
         "x": x.tolist(),
         "mean": mu,
         "std": std
+        "d": d
     }
 
     return jsonify([prob, prob2, prob3, chall_kills]), 201
