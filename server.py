@@ -227,6 +227,11 @@ def linear_regression():
 
 @app.route('/ml/api/v1.0/data/logistic-regression', methods=["POST"])
 def logisitic_regression():
+
+    def hello(x):
+        print x
+
+    hello ("xxi")
     if not request.json:
         abort(400)
 
