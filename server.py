@@ -44,7 +44,6 @@ def record_wins(d):
     else:
         return 1
 
-
 with open("challenger.json") as openfile:
     data = json.load(openfile)
 challenger_players_data = data
@@ -78,6 +77,7 @@ challenger_dmg_taken = [challenger_players_stats[i]["totalDamageTaken"]for i in 
 challenger_neutral_minions = [challenger_players_stats[i]["minionsKilled"] for i in range(bronze_least_games) if "minionsKilled" in challenger_players_stats[i]]
 challenger_minions = [challenger_players_stats[i]["neutralMinionsKilled"] for i in range(bronze_least_games) if "neutralMinionsKilled" in challenger_players_stats[i]]
 challenger_wins = [record_wins(challenger_players_stats[i]["win"]) for i in range(bronze_least_games)]
+challenger_wins = [record_losses(challenger_players_stats[i]["win"]) for i in range(bronze_least_games)]
 challenger_kills = [challenger_players_stats[i]["championsKilled"] for i in range(bronze_least_games) if "championsKilled" in challenger_players_stats[i]]
 challenger_deaths = [challenger_players_stats[i]["numDeaths"] for i in range(bronze_least_games) if "numDeaths" in challenger_players_stats[i]]
 
@@ -260,6 +260,7 @@ def support_vector_machine():
     cgs = challenger_gold_spent + master_gold_spent + bronze_gold_spent
     cgt = challenger_time + master_time + bronze_time
     wins = challenger_wins + master_wins + bronze_wins
+    print challenger_wins
     x = np.matrix([cge, cgs, cgt])
     y = np.array(wins)
     x = x.transpose()
