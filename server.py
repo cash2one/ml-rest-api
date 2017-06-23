@@ -77,7 +77,7 @@ challenger_dmg_taken = [challenger_players_stats[i]["totalDamageTaken"]for i in 
 challenger_neutral_minions = [challenger_players_stats[i]["minionsKilled"] for i in range(bronze_least_games) if "minionsKilled" in challenger_players_stats[i]]
 challenger_minions = [challenger_players_stats[i]["neutralMinionsKilled"] for i in range(bronze_least_games) if "neutralMinionsKilled" in challenger_players_stats[i]]
 challenger_wins = [record_wins(challenger_players_stats[i]["win"]) for i in range(bronze_least_games)]
-challenger_kills = [challenger_players_stats[i]["championsKilled"] for i in range(bronze_least_games) if "championsKilled" in challenger_players_stats[i]]
+challenger_kills = [float(challenger_players_stats[i]["championsKilled"]) for i in range(bronze_least_games) if "championsKilled" in challenger_players_stats[i]]
 challenger_deaths = [challenger_players_stats[i]["numDeaths"] for i in range(bronze_least_games) if "numDeaths" in challenger_players_stats[i]]
 
 bronze_gold_earned = [bronze_players_stats[i]["goldEarned"]for i in range(bronze_least_games) if "goldEarned" in bronze_players_stats[i]]
@@ -236,10 +236,9 @@ def logisitic_regression():
     ck = challenger_kills + master_kills + bronze_kills
     wins = challenger_wins + master_wins + bronze_wins
     ck = challenger_kills + master_kills + bronze_kills
-    # ck = np.array(ck)
     print ck
     cd = challenger_deaths
-    x = np.array([cge, cgs, cgt, ck])
+    x = np.matrix([cge, cgs, cgt, ck])
     y = np.array(wins)
     x = x.transpose()
     clf = linear_model.LogisticRegression(C=1e5)
