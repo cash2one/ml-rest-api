@@ -262,7 +262,7 @@ def support_vector_machine():
     wins = challenger_wins + master_wins + bronze_wins
     x = np.matrix([cge, cgs, cgt])
     y = np.array(wins)
-    # x = x.transpose()
+    y = y.transpose()
     clf = svm.SVC()
     clf.fit(x, wins)
     player_data = np.matrix([request.json["x"], request.json["y"], request.json["z"]])
