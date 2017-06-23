@@ -236,10 +236,8 @@ def logisitic_regression():
     ck = challenger_kills + master_kills + bronze_kills
     wins = challenger_wins + master_wins + bronze_wins
     ck = np.matrix([challenger_kills + master_kills + bronze_kills])
-    print ck
     cd = challenger_deaths
     x = np.matrix([cge, cgs, cgt])
-    x = np.concatenate(x, ck)
     y = np.array(wins)
     x = x.transpose()
     clf = linear_model.LogisticRegression(C=1e5)
