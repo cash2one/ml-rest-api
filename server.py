@@ -236,18 +236,19 @@ def logisitic_regression():
     ck = challenger_kills + master_kills + bronze_kills
     wins = challenger_wins + master_wins + bronze_wins
     ck = np.matrix([challenger_kills + master_kills + bronze_kills])
-    # print ck
-    # cd = challenger_deaths
-    # x = np.matrix([cge, cgs, cgt, ck])
-    # y = np.array(wins)
-    # x = x.transpose()
-    # clf = linear_model.LogisticRegression(C=1e5)
-    # clf.fit(x, y)
-    # player_data = np.matrix([request.json["x"], request.json["y"], request.json["z"]])
-    # player_data = player_data.transpose()
-    # data = {
-    #     "data": ck
-    # }
+    print ck
+    cd = challenger_deaths
+    x = np.matrix([cge, cgs, cgt])
+    x = np.concatenate(x, ck)
+    y = np.array(wins)
+    x = x.transpose()
+    clf = linear_model.LogisticRegression(C=1e5)
+    clf.fit(x, y)
+    player_data = np.matrix([request.json["x"], request.json["y"], request.json["z"]])
+    player_data = player_data.transpose()
+    data = {
+        "data": ck
+    }
     return jsonify(data), 201
 
 
