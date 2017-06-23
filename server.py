@@ -263,7 +263,7 @@ def support_vector_machine():
     x = np.matrix([cge, cgs, cgt])
     y = np.array(wins)
     x = x.transpose()
-    clf = svm.SVC()
+    clf = svm.SVC(C=1e5)
     clf.fit(x, wins)
     player_data = np.matrix([request.json["x"], request.json["y"], request.json["z"]])
     player_data = player_data.transpose()
