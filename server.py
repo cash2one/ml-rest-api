@@ -77,7 +77,6 @@ challenger_dmg_taken = [challenger_players_stats[i]["totalDamageTaken"]for i in 
 challenger_neutral_minions = [challenger_players_stats[i]["minionsKilled"] for i in range(bronze_least_games) if "minionsKilled" in challenger_players_stats[i]]
 challenger_minions = [challenger_players_stats[i]["neutralMinionsKilled"] for i in range(bronze_least_games) if "neutralMinionsKilled" in challenger_players_stats[i]]
 challenger_wins = [record_wins(challenger_players_stats[i]["win"]) for i in range(bronze_least_games)]
-challenger_wins = [record_losses(challenger_players_stats[i]["win"]) for i in range(bronze_least_games)]
 challenger_kills = [challenger_players_stats[i]["championsKilled"] for i in range(bronze_least_games) if "championsKilled" in challenger_players_stats[i]]
 challenger_deaths = [challenger_players_stats[i]["numDeaths"] for i in range(bronze_least_games) if "numDeaths" in challenger_players_stats[i]]
 
