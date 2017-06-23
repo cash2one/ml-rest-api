@@ -237,8 +237,7 @@ def logisitic_regression():
     wins = challenger_wins + master_wins + bronze_wins
     ck = challenger_kills + master_kills + bronze_kills
     cd = challenger_deaths
-    x = np.matrix([cge, cgs, cgt, ck])
-    print x
+    x = np.matrix([cge, cgs, cgt])
     # y = np.array(wins)
     # x = x.transpose()
     # clf = linear_model.LogisticRegression(C=1e5)
@@ -246,7 +245,7 @@ def logisitic_regression():
     # player_data = np.matrix([request.json["x"], request.json["y"], request.json["z"]])
     # player_data = player_data.transpose()
     data = {
-        "data": x
+        "data": ck
     }
     return jsonify(data), 201
 
