@@ -235,6 +235,8 @@ def logisitic_regression():
     cgt = challenger_time + master_time + bronze_time
     ck = challenger_kills + master_kills + bronze_kills
     wins = challenger_wins + master_wins + bronze_wins
+    ck = challenger_kills + master_kills + bronze_kills
+    print ck
     cd = challenger_deaths
     x = np.matrix([cge, cgs, cgt])
     y = np.array(wins)
