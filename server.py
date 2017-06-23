@@ -7,7 +7,7 @@ import numpy as np
 from scipy.stats import norm
 from scipy.stats import linregress
 import scipy.integrate as integrate
-from sklearn import linear_model
+from sklearn import linear_model, svm
 import json
 import math
 import pprint
@@ -235,7 +235,6 @@ def logisitic_regression():
     cgs = challenger_gold_spent + master_gold_spent + bronze_gold_spent
     cgt = challenger_time + master_time + bronze_time
     ck = challenger_kills + master_kills + bronze_kills
-    # cm = challenger_minions +
     wins = challenger_wins + master_wins + bronze_wins
     cd = challenger_deaths
     x = np.matrix([cge, cgs, cgt])
@@ -249,6 +248,28 @@ def logisitic_regression():
         "data": list(clf.predict(player_data))
     }
     return jsonify(data), 201
+
+
+@app.route('/ml/api/v1.0/data/svm', methods=["POST"])
+def support_vector_machine():
+
+    if not request.json:
+        abort(400)
+
+    cge = challenger_gold_earned + master_gold_earned + bronze_gold_earned
+    cgs = challenger_gold_spent + master_gold_spent + bronze_gold_spent
+    cgt = challenger_time + master_time + bronze_time
+    wins = challenger_wins + master_wins + bronze_wins
+    x = np.matrix([cge, cgs, cgt])
+    clf = svm.SVC()
+    clf.fit(x, wins)
+    player_data = np.matrix([request.json["x"], request.json["y"], request.json["z"]])
+    data = {
+        "data": list(clf.predict(player_data))
+    }
+    return jsonify(data), 201
+
+
 
 
 app.run(host="0.0.0.0 ", port="8000")
