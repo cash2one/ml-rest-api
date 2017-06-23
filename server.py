@@ -119,7 +119,7 @@ def getProbability(x, y, dx, mu, std, data):
     return total
 
 
-@app.route('/ml/api/v1.0/data/pdf', methods=["POST"])
+@app.route('/ml/api/v1.0/data/pdf', methods=["GET"])
 def get_probability():
     if not request.json:
         abort(400)
@@ -200,7 +200,7 @@ def get_probability():
     return jsonify([prob, prob2, prob3, chall_kills]), 201
 
 
-@app.route('/ml/api/v1.0/data/linear-regression', methods=["POST"])
+@app.route('/ml/api/v1.0/data/linear-regression', methods=["GET"])
 def linear_regression():
     if not request.json:
         abort(400)
@@ -225,7 +225,7 @@ def linear_regression():
 
     return jsonify(data), 201
 
-@app.route('/ml/api/v1.0/data/logistic-regression', methods=["POST"])
+@app.route('/ml/api/v1.0/data/logistic-regression', methods=["GET"])
 def logisitic_regression():
 
     if not request.json:
