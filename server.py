@@ -238,20 +238,17 @@ def logisitic_regression():
     ck = np.matrix([challenger_kills + master_kills + bronze_kills])
     cd = challenger_deaths
     x = np.matrix([cge, cgs, cgt])
-    y = np.matrix(wins)
+    y = np.array(wins)
     x = x.transpose()
     clf = linear_model.LogisticRegression(C=1e5)
     clf.fit(x, y)
     player_data = np.matrix([request.json["x"], request.json["y"], request.json["z"]])
-    player_data = player_data.transpose()
-    print y
-    # y = y.transpose()
-    print y
-    # score = clf.score(player_data, y)
-    # data = {
-    #     "data": list(clf.predict(player_data)),
-    #     "score": score
-    # }
+    # player_data = player_data.transpose()
+    score = clf.score(player_data, y)
+    data = {
+        "data": list(clf.predict(player_data)),
+        "score": score
+    }
     return jsonify(data), 201
 
 
