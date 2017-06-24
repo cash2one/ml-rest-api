@@ -244,8 +244,7 @@ def logisitic_regression():
     clf.fit(x, y)
     player_data = np.array([request.json["x"], request.json["y"], request.json["z"]])
     player_data = player_data.transpose()
-    print player_data
-    print x
+    y = y.transpose()
     score = clf.score(player_data, y)
     data = {
         "data": list(clf.predict(player_data)),
