@@ -246,7 +246,7 @@ def logisitic_regression():
     player_data = player_data.transpose()
     print player_data
     print x
-    score = clf.score(player_data, y)
+    score = clf.score(player_data.reshape((999, 1)), y)
     data = {
         "data": list(clf.predict(player_data)),
         "score": score
