@@ -247,11 +247,11 @@ def logisitic_regression():
     print y
     y = y.transpose()
     print y
-    score = clf.score(player_data, y)
-    data = {
-        "data": list(clf.predict(player_data)),
-        "score": score
-    }
+    # score = clf.score(player_data, y)
+    # data = {
+    #     "data": list(clf.predict(player_data)),
+    #     "score": score
+    # }
     return jsonify(data), 201
 
 
