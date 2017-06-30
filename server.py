@@ -212,7 +212,8 @@ def linear_regression():
     slope, intercept, r_value, p_value, std_err = linregress(x, y)
     regr = linear_model.LinearRegression()
     x = np.array(x)
-    x = x.transpose()
+    y = np.array(y);
+    y = y.transpose()
     data = {
         "slope": slope,
         "intercept": intercept,
