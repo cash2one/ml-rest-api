@@ -247,7 +247,8 @@ def logisitic_regression():
     proba = clf.predict_proba(x)
     prob_list = []
     for i in proba:
-        prob_list.append(i)
+        for j in proba:
+            prob_list.append(j)
     score = clf.score(x, y)
     data = {
         "data": list(clf.predict(player_data)),
