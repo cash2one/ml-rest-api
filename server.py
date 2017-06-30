@@ -281,5 +281,4 @@ def support_vector_machine():
 
 
 
-
-app.run(host="0.0.0.0 ", port="8000")
+app.run(host="0.0.0.0 ", port="8000", threaded=True)
