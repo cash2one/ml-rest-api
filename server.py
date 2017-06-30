@@ -127,7 +127,7 @@ def get_probability():
 
     mu, std = norm.fit(d)
 
-    # plt.hist(d, bins=25, normed=True, alpha=0.6)
+    plt.hist(d, bins=25, normed=True, alpha=0.6)
     xmin, xmax = plt.xlim()
     x = np.linspace(xmin, xmax, 100)
     p = norm.pdf(x, mu, std)
@@ -145,7 +145,7 @@ def get_probability():
 
     mu, std = norm.fit(d)
 
-    # plt.hist(d, bins=25, normed=True, alpha=0.6)
+    plt.hist(d, bins=25, normed=True, alpha=0.6)
     xmin, xmax = plt.xlim()
     x = np.linspace(xmin, xmax, 100)
     p = norm.pdf(x, mu, std)
@@ -163,7 +163,7 @@ def get_probability():
 
     mu, std = norm.fit(d)
 
-    # plt.hist(d, bins=25, normed=True, alpha=0.6)
+    plt.hist(d, bins=25, normed=True, alpha=0.6)
     xmin, xmax = plt.xlim()
     x = np.linspace(xmin, xmax, 100)
     p = norm.pdf(x, mu, std)
@@ -181,7 +181,7 @@ def get_probability():
 
     mu, std = norm.fit(d)
 
-    # plt.hist(d, bins=25, normed=True, alpha=0.6)
+    plt.hist(d, bins=25, normed=True, alpha=0.6)
     xmin, xmax = plt.xlim()
     x = np.linspace(xmin, xmax, 100)
     p = norm.pdf(x, mu, std)
