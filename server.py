@@ -211,7 +211,7 @@ def linear_regression():
     max_y = max(y)
     slope, intercept, r_value, p_value, std_err = linregress(x, y)
     regr = linear_model.LinearRegression()
-    x = x.tranpose()
+    x = x.transpose()
     data = {
         "slope": slope,
         "intercept": intercept,
