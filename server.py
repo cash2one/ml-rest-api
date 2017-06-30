@@ -210,6 +210,7 @@ def linear_regression():
     max_x = max(x)
     max_y = max(y)
     slope, intercept, r_value, p_value, std_err = linregress(x, y)
+    y_final = (slope * max_x)+ intercept
     data = {
         "slope": slope,
         "intercept": intercept,
@@ -220,6 +221,7 @@ def linear_regression():
         "max_y": max_y,
         "min_x": min_x,
         "min_y": min_y,
+        "y_final": y_final
     }
 
     return jsonify(data), 201
