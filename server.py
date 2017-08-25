@@ -261,6 +261,9 @@ def central_tendencies():
         abort(400)
 
     player_data = request.json["data"]
+    for i in range(len(player_data)):
+        print player_data[i]["stats"]
+
     data = {
         "data": player_data
     }
