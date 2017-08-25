@@ -254,6 +254,18 @@ def logisitic_regression():
     }
     return jsonify(data), 201
 
+@app.route('/ml/api/v1.0/data/central-tendencies', methods=["POST"])
+def central-tendencies():
+
+    if not request.json:
+        abort(400)
+
+    player_data = request.json["data"]
+    data = {
+        "data": player_data)
+    }
+    return jsonify(data), 201
+
 
 @app.route('/ml/api/v1.0/data/svm', methods=["POST"])
 def support_vector_machine():
@@ -281,4 +293,4 @@ def support_vector_machine():
 
 
 
-app.run(host="0.0.0.0 ", port="8000")
+# app.run(host="127.0.0.1 ", port="8000")
