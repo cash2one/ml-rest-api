@@ -261,11 +261,24 @@ def central_tendencies():
         abort(400)
 
     player_data = request.json["data"]
+    kills = 0
+    deaths = 0
+    cs = 0
+    assists = 0
     for i in range(len(player_data)):
-        print player_data[i]["stats"]
+        kills += player_data[i]["stats"]["kills"]
+        deaths += player_data[i]["stats"]["deaths"]
+        cs += player_data[i]["stats"]["minionsKilled"]
+        kills += player_data[i]["stats"]["assists"]
+
+    avg_kills = kills / len(player_data)
+    avg_deaths = deaths / len(player_data)
+    avg_cs = cs / len(player_data)
+    avg_assists = assists / len(player_data)
+
 
     data = {
-        "data": player_data
+        "data": [avg_kills, avg_deaths, avg_cs, avg_assists]
     }
     return jsonify(data), 201
 
