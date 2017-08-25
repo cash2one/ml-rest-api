@@ -268,7 +268,7 @@ def central_tendencies():
     for i in range(len(player_data)):
         kills += player_data[i]["stats"]["kills"]
         deaths += player_data[i]["stats"]["deaths"]
-        cs += player_data[i]["stats"]["minionsKilled"]
+        cs += player_data[i]["stats"]["totalMinionsKilled"]
         kills += player_data[i]["stats"]["assists"]
 
     avg_kills = kills / len(player_data)
