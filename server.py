@@ -293,4 +293,4 @@ def support_vector_machine():
 
 
 
-app.run(host="127.0.0.1 ", port="8000")
+app.run(host="127.0.0.1", port="8000")
