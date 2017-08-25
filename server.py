@@ -262,7 +262,7 @@ def central_tendencies():
 
     player_data = request.json["data"]
     data = {
-        "data": player_data)
+        "data": player_data
     }
     return jsonify(data), 201
 
