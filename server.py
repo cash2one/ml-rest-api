@@ -255,7 +255,7 @@ def logisitic_regression():
     return jsonify(data), 201
 
 @app.route('/ml/api/v1.0/data/central-tendencies', methods=["POST"])
-def central-tendencies():
+def central_tendencies():
 
     if not request.json:
         abort(400)
