@@ -12,6 +12,7 @@ import json
 import math
 import pprint
 import matplotlib
+
 matplotlib.use('Agg')
 from matplotlib import pyplot as plt
 
@@ -238,6 +239,7 @@ def logisitic_regression():
     ck = challenger_kills + master_kills + bronze_kills
     wins = challenger_wins + master_wins + bronze_wins
     ck = np.matrix([challenger_kills + master_kills + bronze_kills])
+
     cd = challenger_deaths
     x = np.matrix([cge, cgs, cgt])
     y = np.array(wins)
@@ -265,20 +267,26 @@ def central_tendencies():
     deaths = 0
     cs = 0
     assists = 0
+    turret_kills = 0
+    gold_earned = 0
     for i in range(len(player_data)):
         kills += player_data[i]["stats"]["kills"]
         deaths += player_data[i]["stats"]["deaths"]
         cs += player_data[i]["stats"]["totalMinionsKilled"]
         assists += player_data[i]["stats"]["assists"]
+        turret_kills += player_data[i]["stats"]["turretKills"]
+        gold_earned += player_data[i]["stats"]["goldEarned"]
 
     avg_kills = kills / len(player_data)
     avg_deaths = deaths / len(player_data)
     avg_cs = cs / len(player_data)
     avg_assists = assists / len(player_data)
+    avg_turret_kills = turret_kills / len(player_data)
+    avg_gold_earned = gold_earned / len(player_data)
 
 
     data = {
-        "data": [avg_kills, avg_deaths, avg_cs, avg_assists]
+        "data": [avg_kills, avg_deaths, avg_cs, avg_assists, avg_turret_kills, avg_gold_earned]
     }
     return jsonify(data), 201
 
