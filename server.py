@@ -278,12 +278,12 @@ def central_tendencies():
         turret_kills += player_data[i]["stats"]["turretKills"]
         gold_earned += player_data[i]["stats"]["goldEarned"]
 
-    avg_kills = kills / len(player_data)
-    avg_deaths = deaths / len(player_data)
-    avg_cs = cs / len(player_data)
-    avg_assists = assists / len(player_data)
+    avg_kills = int(kills / len(player_data))
+    avg_deaths = int(deaths / len(player_data))
+    avg_cs = int(cs / len(player_data))
+    avg_assists = int(assists / len(player_data))
     avg_turret_kills = turret_kills / len(player_data)
-    avg_gold_earned = gold_earned / len(player_data)
+    avg_gold_earned = int(gold_earned / len(player_data))
 
     data = {
         "data": [avg_kills, avg_deaths, avg_cs, avg_assists, avg_turret_kills, avg_gold_earned]
