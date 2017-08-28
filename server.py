@@ -284,6 +284,9 @@ def central_tendencies():
     avg_turret_kills = float(turret_kills / len(player_data))
     avg_gold_earned = float(gold_earned / len(player_data))
     print float(turret_kills / len(player_data))
+    print turret_kills, len(player_data)
+    print turret_kills / len(player_data)
+
     data = {
         "data": [avg_kills, avg_deaths, avg_cs, avg_assists, avg_turret_kills, avg_gold_earned]
     }
