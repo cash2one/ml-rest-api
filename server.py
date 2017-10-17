@@ -334,7 +334,7 @@ def central_tendencies():
                     avg_bronze_gold_spent,
                     avg_bronze_time,
                     avg_bronze_dmg_taken,
-                    avg_bronze__minions,
+                    avg_bronze_minions,
                     avg_bronze_wins, avg_master_kills,
                     avg_bronze_deaths],
         "challenger": [avg_challenger_gold_earned,
