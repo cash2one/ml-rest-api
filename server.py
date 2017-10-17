@@ -83,14 +83,14 @@ challenger_wins = [record_wins(challenger_players_stats[i]["win"]) for i in rang
 challenger_kills = [int(challenger_players_stats[i]["championsKilled"]) for i in range(bronze_least_games) if "championsKilled" in challenger_players_stats[i]]
 challenger_deaths = [challenger_players_stats[i]["numDeaths"] for i in range(bronze_least_games) if "numDeaths" in challenger_players_stats[i]]
 
-avg_challenger_gold_earned = sum(challenger_gold_earned) / len(bronze_least_games)
-avg_challenger_gold_spent = sum(challenger_gold_spent) / len(bronze_least_games)
-avg_challenger_time = sum(challenger_time) / len(bronze_least_games)
-avg_challenger_dmg_taken = sum(challenger_dmg_taken) / len(bronze_least_games)
-avg_challenger_neutral_minions = sum(challenger_neutral_minions) / len(bronze_least_games)
-avg_challenger_wins = sum(challenger_wins) / len(bronze_least_games)
-avg_challenger_kills = sum(challenger_kills) / len(bronze_least_games)
-avg_challenger_deaths  = sum(challenger_deaths) / len(bronze_least_games)
+avg_challenger_gold_earned = sum(challenger_gold_earned) / bronze_least_games
+avg_challenger_gold_spent = sum(challenger_gold_spent) / bronze_least_games
+avg_challenger_time = sum(challenger_time) / bronze_least_games
+avg_challenger_dmg_taken = sum(challenger_dmg_taken) / bronze_least_games
+avg_challenger_neutral_minions = sum(challenger_neutral_minions) / bronze_least_games
+avg_challenger_wins = sum(challenger_wins) / bronze_least_games
+avg_challenger_kills = sum(challenger_kills) / bronze_least_games
+avg_challenger_deaths  = sum(challenger_deaths) / bronze_least_games
 
 
 
@@ -104,14 +104,14 @@ bronze_wins = [record_wins(bronze_players_stats[i]["win"]) for i in range(bronze
 bronze_kills = [bronze_players_stats[i]["championsKilled"] for i in range(bronze_least_games) if "championsKilled" in bronze_players_stats[i]]
 bronze_deaths = [bronze_players_stats[i]["numDeaths"] for i in range(bronze_least_games) if "numDeaths" in bronze_players_stats[i]]
 
-avg_bronze_gold_earned = sum(bronze_gold_earned) / len(bronze_least_games)
-avg_bronze_gold_spent = sum(bronze_gold_spent) / len(bronze_least_games)
-avg_bronze_time = sum(bronze_time) / len(bronze_least_games)
-avg_bronze_dmg_taken = sum(bronze_dmg_taken) / len(bronze_least_games)
-avg_bronze_neutral_minions = sum(bronze_neutral_minions) / len(bronze_least_games)
-avg_bronze_wins = sum(bronze_wins) / len(bronze_least_games)
-avg_bronze_kills = sum(bronze_kills) / len(bronze_least_games)
-avg_bronze_deaths  = sum(bronze_deaths) / len(bronze_least_games)
+avg_bronze_gold_earned = sum(bronze_gold_earned) / bronze_least_games
+avg_bronze_gold_spent = sum(bronze_gold_spent) / bronze_least_games
+avg_bronze_time = sum(bronze_time) / bronze_least_games
+avg_bronze_dmg_taken = sum(bronze_dmg_taken) / bronze_least_games
+avg_bronze_neutral_minions = sum(bronze_neutral_minions) / bronze_least_games
+avg_bronze_wins = sum(bronze_wins) / bronze_least_games
+avg_bronze_kills = sum(bronze_kills) / bronze_least_games
+avg_bronze_deaths  = sum(bronze_deaths) / bronze_least_games
 
 master_gold_earned = [master_players_stats[i]["goldEarned"]for i in range(bronze_least_games) if "goldEarned" in master_players_stats[i]]
 master_gold_spent = [master_players_stats[i]["goldSpent"]for i in range(bronze_least_games) if "goldSpent" in master_players_stats[i]]
@@ -123,14 +123,14 @@ master_wins = [record_wins(master_players_stats[i]["win"]) for i in range(bronze
 master_kills = [master_players_stats[i]["championsKilled"] for i in range(bronze_least_games) if "championsKilled" in master_players_stats[i]]
 master_deaths = [master_players_stats[i]["numDeaths"] for i in range(bronze_least_games) if "numDeaths" in master_players_stats[i]]
 
-avg_master_gold_earned = sum(master_gold_earned) / len(bronze_least_games)
-avg_master_gold_spent = sum(master_gold_spent) / len(bronze_least_games)
-avg_master_time = sum(master_time) / len(bronze_least_games)
-avg_master_dmg_taken = sum(master_dmg_taken) / len(bronze_least_games)
-avg_master_neutral_minions = sum(master_neutral_minions) / len(bronze_least_games)
-avg_master_wins = sum(master_wins) / len(bronze_least_games)
-avg_master_kills = sum(master_kills) / len(bronze_least_games)
-avg_master_deaths  = sum(master_deaths) / len(bronze_least_games)
+avg_master_gold_earned = sum(master_gold_earned) / bronze_least_games
+avg_master_gold_spent = sum(master_gold_spent) / bronze_least_games
+avg_master_time = sum(master_time) / bronze_least_games
+avg_master_dmg_taken = sum(master_dmg_taken) / bronze_least_games
+avg_master_neutral_minions = sum(master_neutral_minions) / bronze_least_games
+avg_master_wins = sum(master_wins) / bronze_least_games
+avg_master_kills = sum(master_kills) / bronze_least_games
+avg_master_deaths  = sum(master_deaths) / bronze_least_games
 
 
 def normpdf(x, mean, sd):
