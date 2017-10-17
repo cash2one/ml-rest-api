@@ -288,8 +288,9 @@ def logisitic_regression():
     print player_data
     proba = clf.predict_proba(x)
     score = clf.score(x, y)
+    score_matrix = clf.predict(player_data)
     data = {
-        "data": list(clf.predict(player_data)),
+        "data": list(score_matrix)),
         "score": score,
     }
     return jsonify(data), 201
