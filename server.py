@@ -289,8 +289,8 @@ def logisitic_regression():
 @app.route('/ml/api/v1.0/data/central-tendencies', methods=["GET"])
 def central_tendencies():
 
-    if not request.json:
-        abort(400)
+    # if not request.json:
+    #     abort(400)
 
     # player_data = request.json["data"]
     # kills = 0
