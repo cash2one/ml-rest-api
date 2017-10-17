@@ -69,7 +69,7 @@ num_master_players = 42
 def minions_killed(ls1, ls2):
     new_list = []
     for i in range(len(ls1)):
-        new_list.append(ls1[i]+ls[i])
+        new_list.append(ls1[i]+ls2[i])
     return new_list
 
 
