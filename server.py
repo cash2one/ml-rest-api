@@ -1,4 +1,5 @@
 from __future__ import division
+import logging
 from flask import Flask, jsonify, request, abort
 
 
@@ -82,6 +83,17 @@ challenger_wins = [record_wins(challenger_players_stats[i]["win"]) for i in rang
 challenger_kills = [int(challenger_players_stats[i]["championsKilled"]) for i in range(bronze_least_games) if "championsKilled" in challenger_players_stats[i]]
 challenger_deaths = [challenger_players_stats[i]["numDeaths"] for i in range(bronze_least_games) if "numDeaths" in challenger_players_stats[i]]
 
+avg_challenger_gold_earned = sum(challenger_gold_earned) / len(bronze_least_games)
+avg_challenger_gold_spent = sum(challenger_gold_spent) / len(bronze_least_games)
+avg_challenger_time = sum(challenger_time) / len(bronze_least_games)
+avg_challenger_dmg_taken = sum(challenger_dmg_taken) / len(bronze_least_games)
+avg_challenger_neutral_minions = sum(challenger_neutral_minions) / len(bronze_least_games)
+avg_challenger_wins = sum(challenger_wins) / len(bronze_least_games)
+avg_challenger_kills = sum(challenger_kills) / len(bronze_least_games)
+avg_challenger_deaths  = sum(challenger_deaths) / len(bronze_least_games)
+
+
+
 bronze_gold_earned = [bronze_players_stats[i]["goldEarned"]for i in range(bronze_least_games) if "goldEarned" in bronze_players_stats[i]]
 bronze_gold_spent = [bronze_players_stats[i]["goldSpent"]for i in range(bronze_least_games) if "goldSpent" in bronze_players_stats[i]]
 bronze_time = [bronze_players_stats[i]["timePlayed"]for i in range(bronze_least_games)]
@@ -91,6 +103,15 @@ bronze_minions = [bronze_players_stats[i]["neutralMinionsKilled"] for i in range
 bronze_wins = [record_wins(bronze_players_stats[i]["win"]) for i in range(bronze_least_games)]
 bronze_kills = [bronze_players_stats[i]["championsKilled"] for i in range(bronze_least_games) if "championsKilled" in bronze_players_stats[i]]
 bronze_deaths = [bronze_players_stats[i]["numDeaths"] for i in range(bronze_least_games) if "numDeaths" in bronze_players_stats[i]]
+
+avg_bronze_gold_earned = sum(bronze_gold_earned) / len(bronze_least_games)
+avg_bronze_gold_spent = sum(bronze_gold_spent) / len(bronze_least_games)
+avg_bronze_time = sum(bronze_time) / len(bronze_least_games)
+avg_bronze_dmg_taken = sum(bronze_dmg_taken) / len(bronze_least_games)
+avg_bronze_neutral_minions = sum(bronze_neutral_minions) / len(bronze_least_games)
+avg_bronze_wins = sum(bronze_wins) / len(bronze_least_games)
+avg_bronze_kills = sum(bronze_kills) / len(bronze_least_games)
+avg_bronze_deaths  = sum(bronze_deaths) / len(bronze_least_games)
 
 master_gold_earned = [master_players_stats[i]["goldEarned"]for i in range(bronze_least_games) if "goldEarned" in master_players_stats[i]]
 master_gold_spent = [master_players_stats[i]["goldSpent"]for i in range(bronze_least_games) if "goldSpent" in master_players_stats[i]]
@@ -102,6 +123,14 @@ master_wins = [record_wins(master_players_stats[i]["win"]) for i in range(bronze
 master_kills = [master_players_stats[i]["championsKilled"] for i in range(bronze_least_games) if "championsKilled" in master_players_stats[i]]
 master_deaths = [master_players_stats[i]["numDeaths"] for i in range(bronze_least_games) if "numDeaths" in master_players_stats[i]]
 
+avg_master_gold_earned = sum(master_gold_earned) / len(bronze_least_games)
+avg_master_gold_spent = sum(master_gold_spent) / len(bronze_least_games)
+avg_master_time = sum(master_time) / len(bronze_least_games)
+avg_master_dmg_taken = sum(master_dmg_taken) / len(bronze_least_games)
+avg_master_neutral_minions = sum(master_neutral_minions) / len(bronze_least_games)
+avg_master_wins = sum(master_wins) / len(bronze_least_games)
+avg_master_kills = sum(master_kills) / len(bronze_least_games)
+avg_master_deaths  = sum(master_deaths) / len(bronze_least_games)
 
 
 def normpdf(x, mean, sd):
@@ -118,7 +147,6 @@ def getProbability(x, y, dx, mu, std, data):
         total += (normpdf(x, mu, std) * dx)
         x += dx
     return total
-
 
 @app.route('/ml/api/v1.0/data/pdf', methods=["POST"])
 def get_probability():
@@ -205,6 +233,7 @@ def get_probability():
 def linear_regression():
     if not request.json:
         abort(400)
+
     x = request.json["kills"]
     y = request.json["deaths"]
     min_x = min(x)
@@ -257,36 +286,57 @@ def logisitic_regression():
     }
     return jsonify(data), 201
 
-@app.route('/ml/api/v1.0/data/central-tendencies', methods=["POST"])
+@app.route('/ml/api/v1.0/data/central-tendencies', methods=["GET"])
 def central_tendencies():
 
     if not request.json:
         abort(400)
 
-    player_data = request.json["data"]
-    kills = 0
-    deaths = 0
-    cs = 0
-    assists = 0
-    turret_kills = 0
-    gold_earned = 0
-    for i in range(len(player_data)):
-        kills += player_data[i]["stats"]["kills"]
-        deaths += player_data[i]["stats"]["deaths"]
-        cs += player_data[i]["stats"]["totalMinionsKilled"]
-        assists += player_data[i]["stats"]["assists"]
-        turret_kills += player_data[i]["stats"]["turretKills"]
-        gold_earned += player_data[i]["stats"]["goldEarned"]
-
-    avg_kills = int(kills / len(player_data))
-    avg_deaths = int(deaths / len(player_data))
-    avg_cs = int(cs / len(player_data))
-    avg_assists = int(assists / len(player_data))
-    avg_turret_kills = turret_kills / len(player_data)
-    avg_gold_earned = int(gold_earned / len(player_data))
+    # player_data = request.json["data"]
+    # kills = 0
+    # deaths = 0
+    # cs = 0
+    # assists = 0
+    # turret_kills = 0
+    # gold_earned = 0
+    # for i in range(len(player_data)):
+    #     kills += player_data[i]["stats"]["kills"]
+    #     deaths += player_data[i]["stats"]["deaths"]
+    #     cs += player_data[i]["stats"]["totalMinionsKilled"]
+    #     assists += player_data[i]["stats"]["assists"]
+    #     turret_kills += player_data[i]["stats"]["turretKills"]
+    #     gold_earned += player_data[i]["stats"]["goldEarned"]
+    #
+    # avg_kills = int(kills / len(player_data))
+    # avg_deaths = int(deaths / len(player_data))
+    # avg_cs = int(cs / len(player_data))
+    # avg_assists = int(assists / len(player_data))
+    # avg_turret_kills = turret_kills / len(player_data)
+    # avg_gold_earned = int(gold_earned / len(player_data))
 
     data = {
-        "data": [avg_kills, avg_deaths, avg_cs, avg_assists, avg_turret_kills, avg_gold_earned]
+        # "data": [avg_kills, avg_deaths, avg_cs, avg_assists, avg_turret_kills, avg_gold_earned],
+        "master": [avg_master_gold_earned,
+                    avg_master_gold_spent,
+                    avg_master_time,
+                    avg_master_dmg_taken,
+                    avg_master_neutral_minions,
+                    avg_master_wins, avg_master_kills,
+                    avg_master_deaths],
+        "bronze": [avg_bronze_gold_earned,
+                    avg_bronze_gold_spent,
+                    avg_bronze_time,
+                    avg_bronze_dmg_taken,
+                    avg_bronze_neutral_minions,
+                    avg_bronze_wins, avg_master_kills,
+                    avg_bronze_deaths],
+        "challenger": [avg_challenger_gold_earned,
+                    avg_challenger_gold_spent,
+                    avg_challenger_time,
+                    avg_challenger_dmg_taken,
+                    avg_challenger_neutral_minions,
+                    avg_challenger_wins, avg_master_kills,
+                    avg_challenger_deaths],
     }
     return jsonify(data), 201
 
