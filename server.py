@@ -66,6 +66,13 @@ master_players_stats = []
 num_master_players = 42
 
 
+def minions_killed(ls1, ls2):
+    new_list = []
+    for i in range(len(ls1)):
+        new_list.append(ls1[i]+ls[i])
+    return new_list
+
+
 challenger_players_stats = clean_and_extract_stats(challenger_players_data)
 master_players_stats = clean_and_extract_stats(master_players_data)
 bronze_players_stats = clean_and_extract_stats(bronze_players_data)
@@ -77,8 +84,8 @@ challenger_gold_earned = [challenger_players_stats[i]["goldEarned"]for i in rang
 challenger_gold_spent = [challenger_players_stats[i]["goldSpent"]for i in range(bronze_least_games) if "goldSpent" in challenger_players_stats[i]]
 challenger_time = [challenger_players_stats[i]["timePlayed"]for i in range(bronze_least_games)]
 challenger_dmg_taken = [challenger_players_stats[i]["totalDamageTaken"]for i in range(bronze_least_games)]
-challenger_neutral_minions = [challenger_players_stats[i]["minionsKilled"] for i in range(bronze_least_games) if "minionsKilled" in challenger_players_stats[i]]
-challenger_minions = [challenger_players_stats[i]["neutralMinionsKilled"] for i in range(bronze_least_games) if "neutralMinionsKilled" in challenger_players_stats[i]]
+challenger_neutral_minions = [challenger_players_stats[i]["neutralMinionsKilled"] for i in range(bronze_least_games) if "minionsKilled" in challenger_players_stats[i]]
+challenger_minions = [challenger_players_stats[i]["minionsKilled"] for i in range(bronze_least_games) if "neutralMinionsKilled" in challenger_players_stats[i]]
 challenger_wins = [record_wins(challenger_players_stats[i]["win"]) for i in range(bronze_least_games)]
 challenger_kills = [int(challenger_players_stats[i]["championsKilled"]) for i in range(bronze_least_games) if "championsKilled" in challenger_players_stats[i]]
 challenger_deaths = [challenger_players_stats[i]["numDeaths"] for i in range(bronze_least_games) if "numDeaths" in challenger_players_stats[i]]
@@ -87,7 +94,7 @@ avg_challenger_gold_earned = sum(challenger_gold_earned) / bronze_least_games
 avg_challenger_gold_spent = sum(challenger_gold_spent) / bronze_least_games
 avg_challenger_time = sum(challenger_time) / bronze_least_games
 avg_challenger_dmg_taken = sum(challenger_dmg_taken) / bronze_least_games
-avg_challenger_neutral_minions = sum(challenger_neutral_minions) / bronze_least_games
+avg_challenger_minions = sum(minions_killed(challenger_neutral_minions, challenger_minions) / bronze_least_games
 avg_challenger_wins = sum(challenger_wins) / bronze_least_games
 avg_challenger_kills = sum(challenger_kills) / bronze_least_games
 avg_challenger_deaths  = sum(challenger_deaths) / bronze_least_games
@@ -98,8 +105,8 @@ bronze_gold_earned = [bronze_players_stats[i]["goldEarned"]for i in range(bronze
 bronze_gold_spent = [bronze_players_stats[i]["goldSpent"]for i in range(bronze_least_games) if "goldSpent" in bronze_players_stats[i]]
 bronze_time = [bronze_players_stats[i]["timePlayed"]for i in range(bronze_least_games)]
 bronze_dmg_taken = [bronze_players_stats[i]["totalDamageTaken"]for i in range(bronze_least_games)]
-bronze_neutral_minions = [bronze_players_stats[i]["minionsKilled"] for i in range(bronze_least_games) if "minionsKilled" in bronze_players_stats[i]]
-bronze_minions = [bronze_players_stats[i]["neutralMinionsKilled"] for i in range(bronze_least_games) if "neutralMinionsKilled" in bronze_players_stats[i]]
+bronze_neutral_minions = [bronze_players_stats[i]["neutralMinionsKilled"] for i in range(bronze_least_games) if "minionsKilled" in bronze_players_stats[i]]
+bronze_minions = [bronze_players_stats[i]["minionsKilled"] for i in range(bronze_least_games) if "neutralMinionsKilled" in bronze_players_stats[i]]
 bronze_wins = [record_wins(bronze_players_stats[i]["win"]) for i in range(bronze_least_games)]
 bronze_kills = [bronze_players_stats[i]["championsKilled"] for i in range(bronze_least_games) if "championsKilled" in bronze_players_stats[i]]
 bronze_deaths = [bronze_players_stats[i]["numDeaths"] for i in range(bronze_least_games) if "numDeaths" in bronze_players_stats[i]]
@@ -108,7 +115,7 @@ avg_bronze_gold_earned = sum(bronze_gold_earned) / bronze_least_games
 avg_bronze_gold_spent = sum(bronze_gold_spent) / bronze_least_games
 avg_bronze_time = sum(bronze_time) / bronze_least_games
 avg_bronze_dmg_taken = sum(bronze_dmg_taken) / bronze_least_games
-avg_bronze_neutral_minions = sum(bronze_neutral_minions) / bronze_least_games
+avg_bronze_minions = sum(minions_killed(bronze_neutral_minions,bronze_minions)) / bronze_least_games
 avg_bronze_wins = sum(bronze_wins) / bronze_least_games
 avg_bronze_kills = sum(bronze_kills) / bronze_least_games
 avg_bronze_deaths  = sum(bronze_deaths) / bronze_least_games
@@ -117,8 +124,8 @@ master_gold_earned = [master_players_stats[i]["goldEarned"]for i in range(bronze
 master_gold_spent = [master_players_stats[i]["goldSpent"]for i in range(bronze_least_games) if "goldSpent" in master_players_stats[i]]
 master_time = [master_players_stats[i]["timePlayed"]for i in range(bronze_least_games)]
 master_dmg_taken = [master_players_stats[i]["totalDamageTaken"]for i in range(bronze_least_games)]
-master_neutral_minions = [master_players_stats[i]["minionsKilled"] for i in range(bronze_least_games) if "minionsKilled" in master_players_stats[i]]
-master_minions = [master_players_stats[i]["neutralMinionsKilled"] for i in range(bronze_least_games) if "neutralMinionsKilled" in master_players_stats[i]]
+master_neutral_minions = [master_players_stats[i]["neutralMinionsKilled"] for i in range(bronze_least_games) if "minionsKilled" in master_players_stats[i]]
+master_minions = [master_players_stats[i]["minionsKilled"] for i in range(bronze_least_games) if "neutralMinionsKilled" in master_players_stats[i]]
 master_wins = [record_wins(master_players_stats[i]["win"]) for i in range(bronze_least_games)]
 master_kills = [master_players_stats[i]["championsKilled"] for i in range(bronze_least_games) if "championsKilled" in master_players_stats[i]]
 master_deaths = [master_players_stats[i]["numDeaths"] for i in range(bronze_least_games) if "numDeaths" in master_players_stats[i]]
@@ -127,7 +134,7 @@ avg_master_gold_earned = sum(master_gold_earned) / bronze_least_games
 avg_master_gold_spent = sum(master_gold_spent) / bronze_least_games
 avg_master_time = sum(master_time) / bronze_least_games
 avg_master_dmg_taken = sum(master_dmg_taken) / bronze_least_games
-avg_master_neutral_minions = sum(master_neutral_minions) / bronze_least_games
+avg_master_minions = sum(minions_killed(master_neutral_minions, master_minions)) / bronze_least_games
 avg_master_wins = sum(master_wins) / bronze_least_games
 avg_master_kills = sum(master_kills) / bronze_least_games
 avg_master_deaths  = sum(master_deaths) / bronze_least_games
