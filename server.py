@@ -290,7 +290,7 @@ def logisitic_regression():
     score_matrix = clf.predict(player_data)
     print score_matrix
     data = {
-        "data": pd.Series(score_matrix).to_json(orient='values'),
+        "data": list(pd.Series(score_matrix).to_json(orient='values')),
         "score": score,
     }
     return jsonify(data), 201
