@@ -283,6 +283,7 @@ def logisitic_regression():
     x = x.transpose()
     clf = linear_model.LogisticRegression(C=1e5)
     clf.fit(x, y)
+    print player_data
     player_data = np.matrix([request.json["x"], request.json["y"], request.json["z"]])
     player_data = player_data.transpose()
     proba = clf.predict_proba(x)
