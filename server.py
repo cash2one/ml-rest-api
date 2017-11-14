@@ -327,7 +327,7 @@ def logisitic_regression():
 @app.route('/ml/api/v1.0/data/central-tendencies', methods=["GET"])
 def central_tendencies():
 
-    if not request.json:
+    if request.json:
         player_data = request.json["data"]
         kills = 0
         deaths = 0
@@ -398,7 +398,7 @@ def central_tendencies():
                     avg_challenger_wins, avg_master_kills,
                     avg_challenger_deaths],
     }
-    return jsonify(data), 201 
+    return jsonify(data), 201
 
 
 @app.route('/ml/api/v1.0/data/svm', methods=["POST"])
