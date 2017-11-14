@@ -264,6 +264,37 @@ def linear_regression():
 
     return jsonify(data), 201
 
+@app.route('/ml/api/v1.0/data/multiple-linear-regression', methods=["POST"])
+def multiple_linear_regression():
+    if not request.json:
+        abort(400)
+
+    x = request.json["x"]
+    y = request.json["y"]
+    z = request.json["z"]
+    min_x = min(x)
+    min_y = min(y)
+    min_z = min(z)
+    max_x = max(x)
+    max_y = max(y)
+    max_z = max(z)
+    slope, intercept, r_value, p_value, std_err = linregress(x, y, z)
+    y_final = (slope * max_x)+ intercept
+    data = {
+        "slope": slope,
+        "intercept": intercept,
+        "r_value": r_value,
+        "p_value": p_value,
+        "std": std_err,
+        "max_x": max_x,
+        "max_y": max_y,
+        "min_x": min_x,
+        "min_y": min_y,
+        "y_final": y_final
+    }
+
+    return jsonify(data), 201
+
 @app.route('/ml/api/v1.0/data/logistic-regression', methods=["POST"])
 def logisitic_regression():
 
@@ -296,33 +327,55 @@ def logisitic_regression():
 @app.route('/ml/api/v1.0/data/central-tendencies', methods=["GET"])
 def central_tendencies():
 
-    # if not request.json:
-    #     abort(400)
+    if not request.json:
+        player_data = request.json["data"]
+        kills = 0
+        deaths = 0
+        cs = 0
+        assists = 0
+        turret_kills = 0
+        gold_earned = 0
+        for i in range(len(player_data)):
+            kills += player_data[i]["stats"]["kills"]
+            deaths += player_data[i]["stats"]["deaths"]
+            cs += player_data[i]["stats"]["totalMinionsKilled"]
+            assists += player_data[i]["stats"]["assists"]
+            turret_kills += player_data[i]["stats"]["turretKills"]
+            gold_earned += player_data[i]["stats"]["goldEarned"]
 
-    # player_data = request.json["data"]
-    # kills = 0
-    # deaths = 0
-    # cs = 0
-    # assists = 0
-    # turret_kills = 0
-    # gold_earned = 0
-    # for i in range(len(player_data)):
-    #     kills += player_data[i]["stats"]["kills"]
-    #     deaths += player_data[i]["stats"]["deaths"]
-    #     cs += player_data[i]["stats"]["totalMinionsKilled"]
-    #     assists += player_data[i]["stats"]["assists"]
-    #     turret_kills += player_data[i]["stats"]["turretKills"]
-    #     gold_earned += player_data[i]["stats"]["goldEarned"]
-    #
-    # avg_kills = int(kills / len(player_data))
-    # avg_deaths = int(deaths / len(player_data))
-    # avg_cs = int(cs / len(player_data))
-    # avg_assists = int(assists / len(player_data))
-    # avg_turret_kills = turret_kills / len(player_data)
-    # avg_gold_earned = int(gold_earned / len(player_data))
+        avg_kills = int(kills / len(player_data))
+        avg_deaths = int(deaths / len(player_data))
+        avg_cs = int(cs / len(player_data))
+        avg_assists = int(assists / len(player_data))
+        avg_turret_kills = turret_kills / len(player_data)
+        avg_gold_earned = int(gold_earned / len(player_data))
 
+        data = {
+            "data": [avg_kills, avg_deaths, avg_cs, avg_assists, avg_turret_kills, avg_gold_earned],
+            "master": [avg_master_gold_earned,
+                        avg_master_gold_spent,
+                        avg_master_time,
+                        avg_master_dmg_taken,
+                        avg_master_minions,
+                        avg_master_wins, avg_master_kills,
+                        avg_master_deaths],
+            "bronze": [avg_bronze_gold_earned,
+                        avg_bronze_gold_spent,
+                        avg_bronze_time,
+                        avg_bronze_dmg_taken,
+                        avg_bronze_minions,
+                        avg_bronze_wins, avg_master_kills,
+                        avg_bronze_deaths],
+            "challenger": [avg_challenger_gold_earned,
+                        avg_challenger_gold_spent,
+                        avg_challenger_time,
+                        avg_challenger_dmg_taken,
+                        avg_challenger_minions,
+                        avg_challenger_wins, avg_master_kills,
+                        avg_challenger_deaths],
+        }
+        return jsonify(data), 201
     data = {
-        # "data": [avg_kills, avg_deaths, avg_cs, avg_assists, avg_turret_kills, avg_gold_earned],
         "master": [avg_master_gold_earned,
                     avg_master_gold_spent,
                     avg_master_time,
@@ -345,7 +398,7 @@ def central_tendencies():
                     avg_challenger_wins, avg_master_kills,
                     avg_challenger_deaths],
     }
-    return jsonify(data), 201
+    return jsonify(data), 201 
 
 
 @app.route('/ml/api/v1.0/data/svm', methods=["POST"])
