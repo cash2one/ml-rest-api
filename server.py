@@ -433,12 +433,9 @@ def integrate_():
 
     points = request.json["data"]
     points = np.array(points)
+    points = points.astype(np.int32)
     x = points[:,0]
     y = points[:,1]
-
-    for i in range(x):
-        x[i] = int(x[i])
-        y[i] = int(y[i])
 
     # calculate polynomial
     z = np.polyfit(x, y, 2)
