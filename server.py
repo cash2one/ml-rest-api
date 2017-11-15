@@ -9,6 +9,7 @@ import numpy as np
 from scipy.stats import norm
 from scipy.stats import linregress
 import scipy.integrate as integrate
+from scipy.integrate import quad
 from sklearn import linear_model, svm
 import json
 import math
@@ -425,6 +426,27 @@ def support_vector_machine():
     }
     return jsonify(data), 201
 
+@app.route('/ml/api/v1.0/data/integrate', methods=["POST"])
+def integrate_():
+    if not request.json:
+        abort(400)
+
+    points = request.json["data"]
+    x = points[:,0]
+    y = points[:,1]
+
+    # calculate polynomial
+    z = np.polyfit(x, y, 2)
+    f = np.poly1d(z)
+    print f
+    def integrand(x, a, b, c):
+        return (a*x**2) + (b * x) + c
+    I = quad(integrand, 1, 5, args=(f[2], f[1], f[0]))
+    data = {
+        "data": I * 00.1
+    }
+
+    return jsonify(data), 201
 
 
 app.run(host="0.0.0.0", port="8000")
