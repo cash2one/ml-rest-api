@@ -431,7 +431,8 @@ def integrate_():
     if not request.json:
         abort(400)
 
-    points = request.json["data"]
+    print request.json["data"]
+
     # points = np.array.(points).astype(np.int32)
     # print points
     # points = points.astype(np.int32)
