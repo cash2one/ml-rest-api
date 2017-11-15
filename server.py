@@ -444,7 +444,7 @@ def integrate_():
         return (a*x**2) + (b * x) + c
     I = quad(integrand, 1, 5, args=(f[2], f[1], f[0]))
     data = {
-        "data": I * 00.1
+        "data": I[0] * 00.1
     }
 
     return jsonify(data), 201
