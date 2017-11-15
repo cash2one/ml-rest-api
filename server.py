@@ -432,6 +432,7 @@ def integrate_():
         abort(400)
 
     points = request.json["data"]
+    points = np.array(points)
     x = points[:,0]
     y = points[:,1]
 

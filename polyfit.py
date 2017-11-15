@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from scipy.integrate import quad
 
 
-points = np.array([(1, 1560), (2, 1110), (3, 900), (4, 875), (5, 510)])
+points = np.array([[1, 1560], [2, 1110], [3, 900], [4, 875], [5, 510]])
 # get x and y vectors
 x = points[:,0]
 y = points[:,1]
