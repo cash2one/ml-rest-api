@@ -431,9 +431,8 @@ def integrate_():
     if not request.json:
         abort(400)
 
-    print request.json["data"]
-
-    points = np.array.(points).astype(np.int32)
+    points = request.json["data"]
+    points = np.array(points)
     print points
     points = points.astype(np.int32)
     x = points[:,0]
@@ -448,7 +447,6 @@ def integrate_():
     I = quad(integrand, 1, 5, args=(f[2], f[1], f[0]))
     data = {
         "data": I[0] * 000.1
-        # "data": 200
     }
 
     return jsonify(data), 201
