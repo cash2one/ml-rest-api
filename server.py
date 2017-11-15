@@ -434,6 +434,8 @@ def integrate_():
     points = request.json["data"]
     points = np.array(points)
     x = points[:,0]
+    for i in points[:,0]:
+        print i
     y = points[:,1]
 
     # calculate polynomial
