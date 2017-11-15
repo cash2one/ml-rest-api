@@ -433,18 +433,19 @@ def integrate_():
 
     points = request.json["data"]
     points = np.array(points)
-    print points
     points = points.astype(np.int32)
+    
     x = points[:,0]
     y = points[:,1]
 
     # calculate polynomial
     z = np.polyfit(x, y, 2)
     f = np.poly1d(z)
-    print f
+
     def integrand(x, a, b, c):
         return (a*x**2) + (b * x) + c
     I = quad(integrand, 1, 5, args=(f[2], f[1], f[0]))
+
     data = {
         "data": I[0] * 000.1
     }
