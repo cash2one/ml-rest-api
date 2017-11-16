@@ -369,7 +369,7 @@ def central_tendencies():
         avg_gold_spent = int(gold_spent / len(player_data))
         avg_time = int(time / len(player_data))
         avg_vision_score = int(vision_score / len(player_data))
-        avg_wards_placed = int(wardsPlaced / len(player_data))
+        avg_wards_placed = int(wards_placed / len(player_data))
 
         data = {
             "data": [float(wins/losses), float(1 - float(wins/losses)), avg_kills,avg_deaths, avg_cs, avg_assists,
