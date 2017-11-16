@@ -325,7 +325,7 @@ def logisitic_regression():
     }
     return jsonify(data), 201
 
-@app.route('/ml/api/v1.0/data/central-tendencies', methods=["GET"])
+@app.route('/ml/api/v1.0/data/central-tendencies', methods=["POST"])
 def central_tendencies():
 
     if request.json:
