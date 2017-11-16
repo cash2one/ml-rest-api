@@ -330,6 +330,7 @@ def central_tendencies():
 
     if request.json:
         player_data = request.json["data"]
+        print player_data
         kills = 0
         deaths = 0
         cs = 0
