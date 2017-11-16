@@ -330,20 +330,35 @@ def central_tendencies():
 
     if request.json:
         player_data = request.json["data"]
-        print player_data
         kills = 0
         deaths = 0
         cs = 0
         assists = 0
         turret_kills = 0
         gold_earned = 0
+        gold_spent = 0
+        time = 0
+        vision_score = 0
+        wards_placed = 0
+        level = 0
+        wins = 0
+        losses = 0
         for i in range(len(player_data)):
+            if (player_data[i]["stats"]["win"] == True):
+                wins += 1
+            else:
+                losses += 1
             kills += player_data[i]["stats"]["kills"]
             deaths += player_data[i]["stats"]["deaths"]
             cs += player_data[i]["stats"]["totalMinionsKilled"]
             assists += player_data[i]["stats"]["assists"]
             turret_kills += player_data[i]["stats"]["turretKills"]
             gold_earned += player_data[i]["stats"]["goldEarned"]
+            gold_spent += player_data[i]["stats"]["goldSpent"]
+            time += player_data[i]["stats"]["longestTimeSpentLiving"]
+            vision_score += player_data[i]["stats"]["visionScore"]
+            wards_placed += player_data[i]["stats"]["wardsPlaced"]
+            level += player_data[i]["stats"]["champLevel"]
 
         avg_kills = int(kills / len(player_data))
         avg_deaths = int(deaths / len(player_data))
@@ -351,9 +366,15 @@ def central_tendencies():
         avg_assists = int(assists / len(player_data))
         avg_turret_kills = turret_kills / len(player_data)
         avg_gold_earned = int(gold_earned / len(player_data))
+        avg_gold_spent = int(gold_spent / len(player_data))
+        avg_time = int(time / len(player_data))
+        avg_vision_score = int(vision_score / len(player_data))
+        avg_wards_placed = int(wardsPlaced / len(player_data))
 
         data = {
-            "data": [avg_kills, avg_deaths, avg_cs, avg_assists, avg_turret_kills, avg_gold_earned],
+            "data": [float(wins/losses), float(1 - float(wins/losses)), avg_kills,avg_deaths, avg_cs, avg_assists,
+                    avg_turret_kills, avg_gold_earned, avg_gold_spent,
+                    avg_time, avg_vision_score, avg_wards_placed],
             "master": [avg_master_gold_earned,
                         avg_master_gold_spent,
                         avg_master_time,
