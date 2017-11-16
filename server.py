@@ -376,30 +376,31 @@ def central_tendencies():
                         avg_challenger_deaths],
         }
         return jsonify(data), 201
-    data = {
-        "master": [avg_master_gold_earned,
-                    avg_master_gold_spent,
-                    avg_master_time,
-                    avg_master_dmg_taken,
-                    avg_master_minions,
-                    avg_master_wins, avg_master_kills,
-                    avg_master_deaths],
-        "bronze": [avg_bronze_gold_earned,
-                    avg_bronze_gold_spent,
-                    avg_bronze_time,
-                    avg_bronze_dmg_taken,
-                    avg_bronze_minions,
-                    avg_bronze_wins, avg_master_kills,
-                    avg_bronze_deaths],
-        "challenger": [avg_challenger_gold_earned,
-                    avg_challenger_gold_spent,
-                    avg_challenger_time,
-                    avg_challenger_dmg_taken,
-                    avg_challenger_minions,
-                    avg_challenger_wins, avg_master_kills,
-                    avg_challenger_deaths],
-    }
-    return jsonify(data), 201
+    else:
+        data = {
+            "master": [avg_master_gold_earned,
+                        avg_master_gold_spent,
+                        avg_master_time,
+                        avg_master_dmg_taken,
+                        avg_master_minions,
+                        avg_master_wins, avg_master_kills,
+                        avg_master_deaths],
+            "bronze": [avg_bronze_gold_earned,
+                        avg_bronze_gold_spent,
+                        avg_bronze_time,
+                        avg_bronze_dmg_taken,
+                        avg_bronze_minions,
+                        avg_bronze_wins, avg_master_kills,
+                        avg_bronze_deaths],
+            "challenger": [avg_challenger_gold_earned,
+                        avg_challenger_gold_spent,
+                        avg_challenger_time,
+                        avg_challenger_dmg_taken,
+                        avg_challenger_minions,
+                        avg_challenger_wins, avg_master_kills,
+                        avg_challenger_deaths],
+        }
+        return jsonify(data), 201
 
 
 @app.route('/ml/api/v1.0/data/svm', methods=["POST"])
@@ -434,7 +435,7 @@ def integrate_():
     points = request.json["data"]
     points = np.array(points)
     points = points.astype(np.int32)
-    
+
     x = points[:,0]
     y = points[:,1]
 
