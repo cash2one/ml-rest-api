@@ -372,7 +372,7 @@ def central_tendencies():
         avg_wards_placed = int(wards_placed / len(player_data))
 
         data = {
-            "data": [float(wins/losses), float(1 - float(wins/losses)), avg_kills,avg_deaths, avg_cs, avg_assists,
+            "data": [float(wins/losses), avg_kills, avg_deaths, avg_cs, avg_assists,
                     avg_turret_kills, avg_gold_earned, avg_gold_spent,
                     avg_time, avg_vision_score, avg_wards_placed],
             "master": [avg_master_gold_earned,
