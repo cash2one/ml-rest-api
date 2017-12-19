@@ -13,6 +13,8 @@ from scipy.integrate import quad
 from sklearn import linear_model, svm
 import json
 import math
+import http
+import urllib2
 import pprint
 import matplotlib
 
@@ -473,6 +475,18 @@ def integrate_():
         "data": I[0] * 000.1
     }
 
+    return jsonify(data), 201
+
+
+@app.route('/ml/api/v1.0/data/get-summoner-account-id', methods=["GET"])
+def logisitic_regression():
+    if not request.json:
+        abort(400)
+
+    summoner_name = request.json["summonerName"]
+    api_key = 'RGAPI-64a66420-cf1d-4020-8e6e-ba350af57f4e'
+    data = urllib2.urlopen("https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/" + summoner_name+ "?api_key=" + api_key + '"').read()
+    print data
     return jsonify(data), 201
 
 
