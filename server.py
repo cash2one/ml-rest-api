@@ -477,8 +477,10 @@ def integrate_():
     return jsonify(data), 201
 
 
+import requests
 @app.route('/ml/api/v1.0/data/get-summoner-account-id', methods=["POST"])
 def get_summoner_account_id():
+
     if not request.json:
         abort(400)
     hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
@@ -491,11 +493,10 @@ def get_summoner_account_id():
     summoner_name = request.json["summonerName"]
     api_key = 'RGAPI-64a66420-cf1d-4020-8e6e-ba350af57f4e'
     url = "https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/" + summoner_name+ "?api_key=" + api_key + '"'
-    req = urllib2.Request(url, headers=hdr)
-    page = urllib2.urlopen(req)
-    content = page.read()
-    print content
-    return jsonify(content), 201
+    req = requests.get(url=url)
+    data = req.json()
+    print data
+    return jsonify(data), 201
 
 
 app.run(host="0.0.0.0", port="8000")
