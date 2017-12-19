@@ -13,7 +13,6 @@ from scipy.integrate import quad
 from sklearn import linear_model, svm
 import json
 import math
-import http
 import urllib2
 import pprint
 import matplotlib
