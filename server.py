@@ -492,11 +492,7 @@ def get_summoner_account_id():
     api_key = 'RGAPI-64a66420-cf1d-4020-8e6e-ba350af57f4e'
     url = "https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/" + summoner_name+ "?api_key=" + api_key + '"'
     req = urllib2.Request(url, headers=hdr)
-    try:
-        page = urllib2.urlopen(req)
-    except urllib2.HTTPError, e:
-        print e.fp.read()
-
+    page = urllib2.urlopen(req)
     content = page.read()
     print content
     return jsonify(content), 201
