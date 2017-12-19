@@ -481,12 +481,25 @@ def integrate_():
 def get_summoner_account_id():
     if not request.json:
         abort(400)
+    hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
+       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+       'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+       'Accept-Encoding': 'none',
+       'Accept-Language': 'en-US,en;q=0.8',
+       'Connection': 'keep-alive'}
 
     summoner_name = request.json["summonerName"]
     api_key = 'RGAPI-64a66420-cf1d-4020-8e6e-ba350af57f4e'
-    data = urllib2.urlopen("https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/" + summoner_name+ "?api_key=" + api_key + '"').read()
-    print data
-    return jsonify(data), 201
+    url = "https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/" + summoner_name+ "?api_key=" + api_key + '"'
+    req = urllib2.Request(url, headers=hdr)
+    try:
+        page = urllib2.urlopen(req)
+    except urllib2.HTTPError, e:
+        print e.fp.read()
+
+    content = page.read()
+    print content
+    return jsonify(content), 201
 
 
 app.run(host="0.0.0.0", port="8000")
