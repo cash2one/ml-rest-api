@@ -477,7 +477,7 @@ def integrate_():
     return jsonify(data), 201
 
 
-@app.route('/ml/api/v1.0/data/get-summoner-account-id', methods=["GET"])
+@app.route('/ml/api/v1.0/data/get-summoner-account-id', methods=["POST"])
 def get_summoner_account_id():
     if not request.json:
         abort(400)
