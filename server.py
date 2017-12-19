@@ -302,7 +302,7 @@ def logisitic_regression():
 
     if not request.json:
         abort(400)
-
+    print request
     cge = challenger_gold_earned + master_gold_earned + bronze_gold_earned
     cgs = challenger_gold_spent + master_gold_spent + bronze_gold_spent
     cgt = challenger_time + master_time + bronze_time
