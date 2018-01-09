@@ -487,9 +487,9 @@ def get_gold_earned():
     # seconds = time / 60
     print time
     # total = seconds * 1.3;
-    data = {
-        "total": total
-    }
+    # data = {
+    #     "total": total
+    # }
     return jsonify(time), 201
 
 
