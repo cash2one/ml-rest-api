@@ -477,6 +477,20 @@ def integrate_():
 
     return jsonify(data), 201
 
+@app.route('/ml/api/v1.0/data/gold-earned', methods=["POST"])
+def get_gold_earned():
+
+    if not request.json:
+        abort(400)
+    time = request.json["time"]
+    #change time from miliseconds to seconds
+    seconds = time / 60
+    total = seconds * 1.3;
+    data = {
+        "total": total
+    }
+    return jsonify(data), 201
+
 
 import requests
 @app.route('/ml/api/v1.0/data/get-summoner-account-id', methods=["POST"])
