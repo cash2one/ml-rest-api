@@ -486,7 +486,7 @@ def get_gold_earned():
     #change time from miliseconds to seconds and find static gold value
     total = [ ]
     for i in range(len(time)):
-        total.append((time[i]));
+        total.append((time[i]) * 1.3);
 
     data = {
         "total": total
