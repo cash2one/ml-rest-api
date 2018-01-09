@@ -483,14 +483,15 @@ def get_gold_earned():
     if not request.json:
         abort(400)
     time = request.json["time"]
-    #change time from miliseconds to seconds
-    # seconds = time / 60
-    print time
-    # total = seconds * 1.3;
-    # data = {
-    #     "total": total
-    # }
-    return jsonify(time), 201
+    #change time from miliseconds to seconds and find static gold value
+    total = [ ]
+    for i in range(len(time)):
+        total.append((time / 60) * 1.3);
+
+    data = {
+        "total": total
+    }
+    return jsonify(total), 201
 
 
 import requests
