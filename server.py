@@ -484,12 +484,13 @@ def get_gold_earned():
         abort(400)
     time = request.json["time"]
     #change time from miliseconds to seconds
-    seconds = time / 60
-    total = seconds * 1.3;
+    # seconds = time / 60
+    print time
+    # total = seconds * 1.3;
     data = {
         "total": total
     }
-    return jsonify(data), 201
+    return jsonify(time), 201
 
 
 import requests
