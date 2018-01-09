@@ -255,6 +255,7 @@ def linear_regression():
         "slope": slope,
         "intercept": intercept,
         "r_value": r_value,
+        "r2_value": r_value**2,
         "p_value": p_value,
         "std": std_err,
         "max_x": max_x,
