@@ -309,7 +309,7 @@ def logisitic_regression():
     cgt = challenger_time + master_time + bronze_time
     ck = challenger_kills + master_kills + bronze_kills
     wins = challenger_wins + master_wins + bronze_wins
-    ck = np.matrix([challenger_kills + master_kills + bronze_kills])
+    # ck = np.matrix([challenger_kills + master_kills + bronze_kills])
 
     cd = challenger_deaths
     x = np.matrix([cge, cgs, ck])
