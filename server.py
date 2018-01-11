@@ -90,7 +90,7 @@ challenger_neutral_minions = [challenger_players_stats[i]["neutralMinionsKilled"
 challenger_minions = [challenger_players_stats[i]["minionsKilled"] for i in range(bronze_least_games) if "minionsKilled" in challenger_players_stats[i]]
 challenger_wins = [record_wins(challenger_players_stats[i]["win"]) for i in range(bronze_least_games)]
 challenger_kills = [int(challenger_players_stats[i]["championsKilled"]) for i in range(bronze_least_games) if "championsKilled" in challenger_players_stats[i]]
-challenger_deaths = [challenger_players_stats[i]["numDeaths"] for i in range(bronze_least_games) if "numDeaths" in challenger_players_stats[i]]
+challenger_deaths = [challenger_players_stats[i]["numDeaths"] for i in range (bronze_least_games) if "numDeaths" in challenger_players_stats[i]]
 
 avg_challenger_gold_earned = sum(challenger_gold_earned) / bronze_least_games
 avg_challenger_gold_spent = sum(challenger_gold_spent) / bronze_least_games
@@ -312,12 +312,12 @@ def logisitic_regression():
     ck = np.matrix([challenger_kills + master_kills + bronze_kills])
 
     cd = challenger_deaths
-    x = np.matrix([cge, cgs, cgt])
+    x = np.matrix([cge, cgs])
     y = np.array(wins)
     x = x.transpose()
     clf = linear_model.LogisticRegression(C=1e5)
     clf.fit(x, y)
-    player_data = np.matrix([request.json["x"], request.json["y"], request.json["z"]])
+    player_data = np.matrix([request.json["x"], request.json["y"]])
     player_data = player_data.transpose()
     proba = clf.predict_proba(x)
     score = clf.score(x, y)
