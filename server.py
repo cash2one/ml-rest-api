@@ -309,18 +309,10 @@ def logisitic_regression():
     cgt = challenger_time + master_time + bronze_time
     ck = challenger_kills + master_kills + bronze_kills
     wins = challenger_wins + master_wins + bronze_wins
-    # ck = np.matrix([challenger_kills + master_kills + bronze_kills])
-    nk = []
-    for i in range(999):
-        nk.append(cgs[i])
-    lk = []
-    for i in range(999):
-        lk.append(cge[i])
-    cge = lk
-    cgs = nk
-    print len(cgs)
+    ck = np.matrix([challenger_kills + master_kills + bronze_kills])
+
     cd = challenger_deaths
-    x = np.matrix([cge, cgs, ck])
+    x = np.matrix([cge, cgs, ct])
     y = np.array(wins)
     x = x.transpose()
     clf = linear_model.LogisticRegression(C=1e5)
