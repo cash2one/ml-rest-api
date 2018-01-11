@@ -312,12 +312,12 @@ def logisitic_regression():
     ck = np.matrix([challenger_kills + master_kills + bronze_kills])
 
     cd = challenger_deaths
-    x = np.matrix([cge, cgs])
+    x = np.matrix([cge, cgs, ck])
     y = np.array(wins)
     x = x.transpose()
     clf = linear_model.LogisticRegression(C=1e5)
     clf.fit(x, y)
-    player_data = np.matrix([request.json["x"], request.json["y"]])
+    player_data = np.matrix([request.json["x"], request.json["y"], request.json["z"]])
     player_data = player_data.transpose()
     proba = clf.predict_proba(x)
     score = clf.score(x, y)
